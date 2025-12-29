@@ -1,4 +1,4 @@
-package DAO;
+package Controlador;
 
 public class ConexionBD {
 }
