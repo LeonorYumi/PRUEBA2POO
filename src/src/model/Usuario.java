@@ -1,63 +1,70 @@
 package model;
 
-import java.time.LocalDateTime;
-
 public class Usuario {
-    private String id;
+
+    private int id;
     private String nombre;
     private String cedula;
     private String username;
-    private String passwordHash;
-    private String rol; // ADMIN, ANALISTA
+    private String password;
+    private String rol;
     private boolean activo;
-    private String createdBy;
-    private LocalDateTime createdAt;
 
-    public Usuario() {}
+    // GETTERS Y SETTERS
 
-    // Getters y setters
-    public String getId() {
-        return id; }
-    public void setId(String id) {
-        this.id = id; }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNombre() {
-        return nombre; }
+        return nombre;
+    }
+
     public void setNombre(String nombre) {
-        this.nombre = nombre; }
+        this.nombre = nombre;
+    }
 
     public String getCedula() {
-        return cedula; }
+        return cedula;
+    }
+
     public void setCedula(String cedula) {
-        this.cedula = cedula; }
+        this.cedula = cedula;
+    }
 
     public String getUsername() {
-        return username; }
-    public void setUsername(String username) {
-        this.username = username; }
+        return username;
+    }
 
-    public String getPasswordHash() {
-        return passwordHash; }
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getRol() {
-        return rol; }
+        return rol;
+    }
+
     public void setRol(String rol) {
-        this.rol = rol; }
+        this.rol = rol;
+    }
 
     public boolean isActivo() {
-        return activo; }
+        return activo;
+    }
+
     public void setActivo(boolean activo) {
-        this.activo = activo; }
+        this.activo = activo;
+    }
 
-    public String getCreatedBy() {
-        return createdBy; }
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy; }
+    public String getPassword(){
+        return password;
+    }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt; }
+    public void setPassword(String password){
+        this.password = password;
+    }
 }
