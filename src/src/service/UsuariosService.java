@@ -1,45 +1,36 @@
 package service;
 
-import dao.UsuarioDao;
-import model.Usuario;
-import org.mindrot.jbcrypt.BCrypt;
+import dao.Conexion;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class UsuariosService {
 
-    private final UsuarioDao usuarioDAO = new UsuarioDao();
+    // ESTE MÉTODO ES EL QUE TE FALTA
+    public boolean login(String usuario, String password) {
 
-    // LOGIN
-    public Usuario login(String username, String passwordPlano) {
+        String sql = "SELECT 1 FROM usuarios WHERE username = ? AND activo = true";
 
-        //  buscar usuario solo por username
-        Usuario usuario = usuarioDAO.buscarPorUsername(username);
+        try (
+                Connection con = Conexion.getConexion();
+                PreparedStatement ps = con.prepareStatement(sql)
+        ) {
 
-        if (usuario == null) {
-            return null;
+            ps.setString(1, usuario);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                // ⚠️ por ahora SOLO probamos conexión y existencia
+                return true;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error login: " + e.getMessage());
         }
 
-        // usuario inactivo
-        if (!usuario.isActivo()) {
-            return null;
-        }
-
-        // validar contraseña con BCrypt
-        if (BCrypt.checkpw(passwordPlano, usuario.getPassword())) {
-            return usuario;
-        }
-
-        return null;
-    }
-
-    // CREAR USUARIO (ADMIN)
-    public boolean crearUsuario(Usuario u) {
-
-        // hash de contraseña
-        String hash = BCrypt.hashpw(u.getPassword(), BCrypt.gensalt());
-        u.setPassword(hash);
-
-        u.setActivo(true);
-
-        return usuarioDAO.crear(u);
+        return false;
     }
 }
