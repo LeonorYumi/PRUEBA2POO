@@ -23,7 +23,7 @@ public class LoginFrame extends JFrame {
         setTitle("Sistema de Licencias - Login");
         setContentPane(login);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 400);
+        setSize(400, 500);
         setLocationRelativeTo(null);
         setResizable(false);
 
