@@ -23,7 +23,6 @@ public class UsuariosService {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                // ⚠️ por ahora SOLO probamos conexión y existencia
                 return true;
             }
 
