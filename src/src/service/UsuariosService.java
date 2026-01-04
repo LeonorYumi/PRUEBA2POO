@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 
 public class UsuariosService {
 
+    // ESTE MÉTODO ES EL QUE TE FALTA
     public boolean login(String usuario, String password) {
 
         String sql = "SELECT 1 FROM usuarios WHERE username = ? AND activo = true";
@@ -22,6 +23,7 @@ public class UsuariosService {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+                // ⚠️ por ahora SOLO probamos conexión y existencia
                 return true;
             }
 
