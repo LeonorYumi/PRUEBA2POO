@@ -98,4 +98,43 @@ public class UsuarioDao {
             return false;
         }
     }
+
+    // BUSCAR POR USERNAME (LOGIN)
+    public Usuario buscarPorUsername(String username) {
+
+        Usuario usuario = null;
+
+        String sql = """
+            SELECT id, nombre, cedula, username, password, rol, activo
+            FROM usuario
+            WHERE username = ?
+            """;
+
+        try (
+                Connection con = new Conexion().getConexion();
+                PreparedStatement ps = con.prepareStatement(sql)
+        ) {
+
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setCedula(rs.getString("cedula"));
+                usuario.setUsername(rs.getString("username"));
+                usuario.setPassword(rs.getString("password"));
+                usuario.setRol(rs.getString("rol"));
+                usuario.setActivo(rs.getBoolean("activo"));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error buscarPorUsername");
+            System.out.println(e.getMessage());
+        }
+
+        return usuario;
+    }
+
 }
